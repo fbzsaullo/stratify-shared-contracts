@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stratify.gg/schemas/utility-used.json",
+  "title": "UtilityUsed",
+  "allOf": [{ "$ref": "./base-event.schema.json" }],
+  "properties": {
+    "event_type": { "const": "UtilityUsed" },
+    "schema_version": { "const": "1.0" },
+    "payload": {
+      "type": "object",
+      "required": ["utility_type", "throw_position", "land_position", "round_number"],
+      "properties": {
+        "utility_type": {
+          "type": "string",
+          "enum": ["smoke", "flash", "molotov", "incendiary", "he_grenade", "decoy"]
+        },
+        "throw_position": {
+          "type": "object",
+          "required": ["x", "y", "z"],
+          "properties": { "x": { "type": "number" }, "y": { "type": "number" }, "z": { "type": "number" } }
+        },
+        "land_position": {
+          "type": "object",
+          "required": ["x", "y", "z"],
+          "properties": { "x": { "type": "number" }, "y": { "type": "number" }, "z": { "type": "number" } }
+        },
+        "intended_zone":       { "type": "string" },
+        "covered_zone":        { "type": "string" },
+        "effectiveness_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "round_number":        { "type": "integer", "minimum": 1 },
+        "phase": {
+          "type": "string",
+          "enum": ["buy", "execution", "retake", "clutch", "other"]
+        }
+      }
+    }
+  }
+}

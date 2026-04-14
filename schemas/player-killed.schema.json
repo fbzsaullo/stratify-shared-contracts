@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stratify.gg/schemas/player-killed.json",
+  "title": "PlayerKilled",
+  "allOf": [{ "$ref": "./base-event.schema.json" }],
+  "properties": {
+    "event_type": { "const": "PlayerKilled" },
+    "schema_version": { "const": "1.0" },
+    "payload": {
+      "type": "object",
+      "required": ["killer_id", "victim_id", "weapon", "is_headshot", "killer_position", "victim_position", "round_number"],
+      "properties": {
+        "killer_id":        { "type": "string" },
+        "victim_id":        { "type": "string" },
+        "weapon":           { "type": "string", "examples": ["ak47", "m4a1", "awp", "glock"] },
+        "is_headshot":      { "type": "boolean" },
+        "is_wallbang":      { "type": "boolean", "default": false },
+        "is_blind_kill":    { "type": "boolean", "default": false },
+        "distance_units":   { "type": "number", "minimum": 0 },
+        "round_number":     { "type": "integer", "minimum": 1 },
+        "round_time_seconds": { "type": "number", "minimum": 0 },
+        "killer_position": {
+          "type": "object",
+          "required": ["x", "y", "z"],
+          "properties": {
+            "x": { "type": "number" },
+            "y": { "type": "number" },
+            "z": { "type": "number" }
+          }
+        },
+        "victim_position": {
+          "type": "object",
+          "required": ["x", "y", "z"],
+          "properties": {
+            "x": { "type": "number" },
+            "y": { "type": "number" },
+            "z": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

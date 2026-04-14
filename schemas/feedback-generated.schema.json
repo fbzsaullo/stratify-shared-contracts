@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stratify.gg/schemas/feedback-generated.json",
+  "title": "FeedbackGenerated",
+  "allOf": [{ "$ref": "./base-event.schema.json" }],
+  "properties": {
+    "event_type": { "const": "FeedbackGenerated" },
+    "schema_version": { "const": "1.0" },
+    "payload": {
+      "type": "object",
+      "required": ["analyzer", "severity", "category", "title", "description", "actionable_tip", "confidence_score"],
+      "properties": {
+        "analyzer": {
+          "type": "string",
+          "enum": [
+            "anti-noob-detector",
+            "crosshair-coach",
+            "utility-coach",
+            "round-iq-analyzer",
+            "clutch-analyzer",
+            "auto-clip-coach",
+            "pro-player-comparison",
+            "real-time-coach"
+          ]
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["info", "warning", "error", "success"]
+        },
+        "category": {
+          "type": "string",
+          "enum": ["aim", "utility", "decision_making", "positioning", "economy", "clutch", "movement"]
+        },
+        "title":          { "type": "string", "maxLength": 120 },
+        "description":    { "type": "string", "maxLength": 500 },
+        "actionable_tip": { "type": "string", "maxLength": 300 },
+        "confidence_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "related_round":  { "type": "integer" },
+        "related_tick":   { "type": "integer" }
+      }
+    }
+  }
+}
