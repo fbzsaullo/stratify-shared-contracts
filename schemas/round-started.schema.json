@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stratify.gg/schemas/round-started.json",
+  "title": "RoundStarted",
+  "description": "Evento disparado no início de cada round.",
+  "allOf": [{ "$ref": "base-event.schema.json" }],
+  "properties": {
+    "event_type": { "const": "RoundStarted" },
+    "payload": {
+      "type": "object",
+      "required": ["round_number", "ct_score", "t_score"],
+      "properties": {
+        "round_number": {
+          "type": "integer",
+          "description": "Número do round atual (1-based)"
+        },
+        "ct_score": {
+          "type": "integer",
+          "description": "Pontuação atual do time CT"
+        },
+        "t_score": {
+          "type": "integer",
+          "description": "Pontuação atual do time T"
+        },
+        "team_economy": {
+          "type": "object",
+          "description": "Estado econômico dos times",
+          "properties": {
+            "ct_money": { "type": "integer" },
+            "t_money": { "type": "integer" }
+          }
+        }
+      }
+    }
+  }
+}

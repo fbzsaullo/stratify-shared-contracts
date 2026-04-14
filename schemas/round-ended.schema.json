@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stratify.gg/schemas/round-ended.json",
+  "title": "RoundEnded",
+  "description": "Evento disparado no fim de cada round com o resultado.",
+  "allOf": [{ "$ref": "base-event.schema.json" }],
+  "properties": {
+    "event_type": { "const": "RoundEnded" },
+    "payload": {
+      "type": "object",
+      "required": ["round_number", "winner", "reason"],
+      "properties": {
+        "round_number": {
+          "type": "integer",
+          "description": "Número do round que terminou"
+        },
+        "winner": {
+          "type": "string",
+          "enum": ["ct", "t"],
+          "description": "Time vencedor do round"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "elimination",
+            "bomb_exploded",
+            "bomb_defused",
+            "time_expired",
+            "ct_surrender",
+            "t_surrender"
+          ],
+          "description": "Motivo do fim do round"
+        },
+        "ct_score": {
+          "type": "integer",
+          "description": "Pontuação do time CT após o round"
+        },
+        "t_score": {
+          "type": "integer",
+          "description": "Pontuação do time T após o round"
+        },
+        "duration_seconds": {
+          "type": "number",
+          "description": "Duração do round em segundos"
+        }
+      }
+    }
+  }
+}

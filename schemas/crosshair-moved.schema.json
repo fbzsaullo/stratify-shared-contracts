@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stratify.gg/schemas/crosshair-moved.json",
+  "title": "CrosshairMoved",
+  "description": "Evento de alta frequência capturando a posição da mira do jogador em relação ao eixo vertical do oponente mais próximo.",
+  "allOf": [{ "$ref": "base-event.schema.json" }],
+  "properties": {
+    "event_type": { "const": "CrosshairMoved" },
+    "payload": {
+      "type": "object",
+      "required": ["tick", "crosshair_offset_degrees"],
+      "properties": {
+        "tick": {
+          "type": "integer",
+          "description": "Tick number da demo em que o evento ocorreu"
+        },
+        "crosshair_offset_degrees": {
+          "type": "number",
+          "description": "Offset vertical da mira em graus em relação à cabeça do inimigo mais próximo. Negativo = abaixo, Positivo = acima."
+        },
+        "crosshair_pitch": {
+          "type": "number",
+          "description": "Ângulo pitch absoluto da mira do jogador"
+        },
+        "crosshair_yaw": {
+          "type": "number",
+          "description": "Ângulo yaw absoluto da mira do jogador"
+        },
+        "nearest_enemy_distance": {
+          "type": "number",
+          "description": "Distância em unidades do CS2 ao inimigo mais próximo visível"
+        },
+        "movement_speed": {
+          "type": "number",
+          "description": "Velocidade de movimento do jogador no momento (unidades/tick)"
+        }
+      }
+    }
+  }
+}

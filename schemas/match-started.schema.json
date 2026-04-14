@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stratify.gg/schemas/match-started.json",
+  "title": "MatchStarted",
+  "description": "Evento disparado quando uma partida de CS2 começa.",
+  "allOf": [{ "$ref": "base-event.schema.json" }],
+  "properties": {
+    "event_type": { "const": "MatchStarted" },
+    "payload": {
+      "type": "object",
+      "required": ["map", "mode", "max_rounds"],
+      "properties": {
+        "map": {
+          "type": "string",
+          "description": "Nome do mapa (ex: de_dust2)"
+        },
+        "mode": {
+          "type": "string",
+          "enum": ["competitive", "premier", "deathmatch", "casual"],
+          "description": "Modo de jogo"
+        },
+        "max_rounds": {
+          "type": "integer",
+          "description": "Número máximo de rounds (geralmente 24 ou 30)"
+        },
+        "team_ct": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs dos jogadores no time CT"
+        },
+        "team_t": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs dos jogadores no time T"
+        }
+      }
+    }
+  }
+}
